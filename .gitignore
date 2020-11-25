@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # Config file
-config.ini
+defenz_alerts/config.ini
 
 # IDEs
 .idea
