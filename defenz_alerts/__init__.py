@@ -36,9 +36,11 @@ def config_logger():
     error_handler.setLevel(logging.ERROR)
     error_handler.setFormatter(
         logging.Formatter(log_format))
-    logging.getLogger(LOGGER_NAME).addHandler(error_handler)
 
-    return logging.getLogger(LOGGER_NAME)
+    logger = logging.getLogger(LOGGER_NAME)
+    logger.addHandler(error_handler)
+
+    return logger
 
 
 def load_config():
