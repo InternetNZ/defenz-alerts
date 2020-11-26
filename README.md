@@ -110,7 +110,7 @@ As another example, below command runs the script only for two networks and sear
 any events in last 10 minutes. 
 
 ```shell script
-./defenz_alerts.py -u myusername -p mysecurepassword -c myclientid -s myclientsecret -e myemail@example.com -t 10 -n 120 130 -v
+./defenz_alerts.py -u myusername -p mysecurepassword -c myclientid -s myclientsecret -e myemail@example.com -i 10 -n 120 130 -v
 ```
 
 ## How to schedule the script
