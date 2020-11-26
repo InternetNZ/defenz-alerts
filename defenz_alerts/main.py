@@ -73,7 +73,7 @@ def get_networks():
 
     :return: list of networks
     """
-    LOGGER.info("Getting all networks...")
+    LOGGER.info("Getting all the networks...")
 
     end_point = API_URL + '/networks'
 
@@ -364,7 +364,6 @@ def get_command_line_arguments():
     args_parser.add_argument(
         '-u',
         '--username',
-        nargs='?',
         default=CONFIG['DEFENZ']['USERNAME'],
         help='Defenz portal username. Default: read from config file'
     )
@@ -429,7 +428,8 @@ def get_command_line_arguments():
         default=False,
         action='store_true',
         help='Write the logs in console as well. Otherwise the logs only will '
-             'be written in the log file.'
+             'be written in the log files. The log files are located in '
+             '$HOME/defenz'
     )
 
     return args_parser.parse_args()
