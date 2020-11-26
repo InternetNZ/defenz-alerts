@@ -117,5 +117,5 @@ any events in last 10 minutes.
 This script can be scheduled by a scheduler e.g. `cron` to be run periodically. For example, 
 to run the script every 10 minutes put below command in your crontab file.
 ```shell script
-*/5 * * * * PATH_TO_DEFENZ_ALERTS_DIR/defenz_alerts.py -u myusername -p mysecurepassword -c myclientid -s myclientsecret -e myemail@example.com -t 10
+*/5 * * * * PATH_TO_DEFENZ_ALERTS_DIR/defenz_alerts.py -u myusername -p mysecurepassword -c myclientid -s myclientsecret -e myemail@example.com -i 10
 ```
