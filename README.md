@@ -92,7 +92,7 @@ optional arguments:
 ```
 
 `USERNAME`, `PASSWORD`, `CLIENT_ID`, `CLIENT_SECRET` and `REPORT_EMAIL` can be provided either 
-as command line arguments or by config file. Please note these are required and must be provided
+as command line arguments or by [config file](#set-the-configs). Please note these are required and must be provided
 in either way.
 
 Assuming the credentials are being provided by command line, the script can be run like this:
@@ -111,12 +111,12 @@ As another example, below command runs the script only for two networks and sear
 any events in last 10 minutes. 
 
 ```shell script
-./defenz_alerts.py -u myusername -p mysecurepassword -c myclientid -s myclientsecret -e myemail@example.com -t 10 -n 120 130 -v
+./defenz_alerts.py -u myusername -p mysecurepassword -c myclientid -s myclientsecret -e myemail@example.com -i 10 -n 120 130 -v
 ```
 
 ## How to schedule the script
 This script can be scheduled by a scheduler e.g. `cron` to be run periodically. For example, 
 to run the script every 10 minutes put below command in your crontab file.
 ```shell script
-*/5 * * * * PATH_TO_DEFENZ_ALERTS_DIR/defenz_alerts.py -u myusername -p mysecurepassword -c myclientid -s myclientsecret -e myemail@example.com -t 10
+*/5 * * * * PATH_TO_DEFENZ_ALERTS_DIR/defenz_alerts.py -u myusername -p mysecurepassword -c myclientid -s myclientsecret -e myemail@example.com -i 10
 ```
