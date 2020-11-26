@@ -91,7 +91,7 @@ optional arguments:
 ```
 
 `USERNAME`, `PASSWORD`, `CLIENT_ID`, `CLIENT_SECRET` and `REPORT_EMAIL` can be provided either 
-as command line arguments or by config file. Please note these are required and must be provided
+as command line arguments or by [config file](#set-the-configs). Please note these are required and must be provided
 in either way.
 
 Assuming the credentials are being provided by command line, the script can be run like this:
