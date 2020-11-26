@@ -349,6 +349,9 @@ def validate_arguments(args):
     if not args.report_email:
         raise Exception(error_temp.format('Report Email'))
 
+    if not args.interval:
+        raise Exception(error_temp.format('Interval'))
+
 
 def get_command_line_arguments():
     """
@@ -418,8 +421,8 @@ def get_command_line_arguments():
     args_parser.add_argument(
         '-i',
         '--interval',
-        default=5,
-        help='Report interval in minute. Default is 5 minutes'
+        default=CONFIG['DEFENZ']['INTERVAL'],
+        help='Report interval in minute. Default: read from config file'
     )
 
     args_parser.add_argument(

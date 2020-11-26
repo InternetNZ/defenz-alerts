@@ -34,6 +34,7 @@ PASSWORD =
 CLIENT_ID =
 CLIENT_SECRET =
 REPORT_EMAIL =
+INTERVAL = 5
 LOGIN_ENDPOINT = https://dnsfirewall-auth.defe.nz/auth/realms/D-ZoneFireWall/protocol/openid-connect/token
 API_URL = https://dnsfirewall-api.defe.nz
 
@@ -86,7 +87,7 @@ optional arguments:
   -r [{MALWARE_PHISHING_BLOCKS,BOT_NET_BLOCK_DETAILS,WEB_FILTER_BLOCKS} [{MALWARE_PHISHING_BLOCKS,BOT_NET_BLOCK_DETAILS,WEB_FILTER_BLOCKS} ...]], --report-types [{MALWARE_PHISHING_BLOCKS,BOT_NET_BLOCK_DETAILS,WEB_FILTER_BLOCKS} [{MALWARE_PHISHING_BLOCKS,BOT_NET_BLOCK_DETAILS,WEB_FILTER_BLOCKS} ...]]
                         List of report types. Default MALWARE_PHISHING_BLOCKS and BOT_NET_BLOCK_DETAILS
   -i INTERVAL, --interval INTERVAL
-                        Report interval in minute. Default is 5 minutes
+                        Report interval in minute. Default: read from config file
   -v, --verbose         Writes the logs in console as well. Otherwise the logs only will be written in the log files. The log files are located in $HOME/defenz
 ```
 
