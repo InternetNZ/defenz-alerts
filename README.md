@@ -34,7 +34,7 @@ PASSWORD =
 CLIENT_ID =
 CLIENT_SECRET =
 REPORT_EMAIL =
-INTERVAL = 5
+INTERVAL = 10
 LOGIN_ENDPOINT = https://dnsfirewall-auth.defe.nz/auth/realms/D-ZoneFireWall/protocol/openid-connect/token
 API_URL = https://dnsfirewall-api.defe.nz
 
@@ -51,6 +51,9 @@ All the attributes are self-descriptive. You don't need to change `LOGIN_ENDPOIN
 they are already set to a valid value. `USERNAME`, `PASSWORD`, `CLIENT_ID` and `CLIENT_SECRET` are 
 the needed credentials to login to Defenz in order to call the APIs. These can 
 be provided as command line parameters as well.
+
+`NOTE`: The default `INTERVAL` is set to 10 minutes. Please don't set it to a lower value as there is
+delay in API so data might not show up.
 
 The `EMAIL` section is for setting up SMTP server configurations so the script will be able to email
 the alerts to the recipients.
@@ -101,7 +104,7 @@ Assuming the credentials are being provided by command line, the script can be r
 ./defenz_alerts.py -u myusername -p mysecurepassword -c myclientid -s myclientsecret -e myemail@example.com -v
 ```
 
-In this example the script search all the networks to find anomaly events in the last 5 
+In this example the script search all the networks to find anomaly events in the last 10 
 minutes. Then email the reports to report emails set on the networks. If 
 report email is not set, the reports will be sent to `myemail@example.com`. The logs will be written in
 standard output as well as log file.
@@ -118,5 +121,5 @@ any events in last 10 minutes.
 This script can be scheduled by a scheduler e.g. `cron` to be run periodically. For example, 
 to run the script every 10 minutes put below command in your crontab file.
 ```shell script
-*/5 * * * * PATH_TO_DEFENZ_ALERTS_DIR/defenz_alerts.py -u myusername -p mysecurepassword -c myclientid -s myclientsecret -e myemail@example.com -i 10
+*/10 * * * * PATH_TO_DEFENZ_ALERTS_DIR/defenz_alerts.py -u myusername -p mysecurepassword -c myclientid -s myclientsecret -e myemail@example.com -i 10
 ```
