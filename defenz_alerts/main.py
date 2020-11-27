@@ -414,7 +414,9 @@ def get_command_line_arguments():
         '-r',
         '--report-types',
         nargs='*',
-        default=[MALWARE_PHISHING_BLOCKS, BOT_NET_BLOCKS],
+        default=CONFIG['DEFENZ']['REPORT_TYPES'].split(',')
+        if CONFIG['DEFENZ']['REPORT_TYPES']
+        else [MALWARE_PHISHING_BLOCKS, BOT_NET_BLOCKS],
         choices=[MALWARE_PHISHING_BLOCKS, BOT_NET_BLOCKS, WEB_FILTER_BLOCKS],
         help='List of report types. Default {} and {}'.format(
             MALWARE_PHISHING_BLOCKS, BOT_NET_BLOCKS)
