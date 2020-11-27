@@ -131,7 +131,7 @@ def _get_email_recipients(network_id, default_report_email=None):
     if report_emails:
         recipients.extend([e['address'] for e in report_emails])
 
-    if not recipients and default_report_email:
+    if default_report_email:
         recipients.append(default_report_email)
 
     return recipients
