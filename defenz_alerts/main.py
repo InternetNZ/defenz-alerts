@@ -308,6 +308,11 @@ def send_email(email_content, recipients):
                        "Please check email configs in the config file.")
         return
 
+    if not recipients:
+        LOGGER.warning("No report email is set on this network or provided by"
+                       "command line/config. So the alert won't be sent.")
+        return
+
     LOGGER.info("Sending email to %s", ', '.join(recipients))
 
     msg = EmailMessage()
@@ -345,9 +350,6 @@ def validate_arguments(args):
 
     if not args.client_secret:
         raise Exception(error_temp.format('Client Secret'))
-
-    if not args.report_email:
-        raise Exception(error_temp.format('Report Email'))
 
     if not args.interval:
         raise Exception(error_temp.format('Interval'))
