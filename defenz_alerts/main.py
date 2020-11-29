@@ -478,6 +478,7 @@ def main():
             try:
                 reports = get_all_reports(net['id'], now, args.interval)
                 for report_type in args.report_types:
+                    report_type = report_type.strip()
                     if reports[report_type]['results']:
                         send_alert(net, report_type, now,
                                    args.interval, args.report_email)
