@@ -216,11 +216,11 @@ NETWORK: {network_id} - {network_name}
 """
 
     if block_type in (MALWARE_PHISHING_BLOCKS, WEB_FILTER_BLOCKS):
-        blocks = \
-            _generate_malware_phishing_email_content(report_details) \
+        blocks = _generate_malware_web_email_content(report_details) \
             if report_details else "No data found!"
     elif block_type == BOT_NET_BLOCKS:
-        blocks = str(report_details) if report_details else "No data found!"
+        blocks = _generate_bot_net_email_content(report_details) \
+            if report_details else "No data found!"
     else:
         raise Exception("Invalid block report type!")
 
@@ -235,12 +235,13 @@ NETWORK: {network_id} - {network_name}
     return email_body
 
 
-def _generate_malware_phishing_email_content(report_details):
+def _generate_malware_web_email_content(report_details):
     """
-    Generates email body content for Malware Phishing block report.
+    Generates email body content for Malware Phishing and Web Filter
+    block reports.
 
     :param report_details: Report details object
-    :return:
+    :return: string
     """
     rows = [v for r in report_details['results'] for v in r['value']]
     table = [
@@ -254,6 +255,29 @@ def _generate_malware_phishing_email_content(report_details):
             row['url'],
             datetime.fromtimestamp(time_stamp).strftime('%Y-%m-%d %H:%M:%S'),
             row['reason'],
+            row['count'],
+        ])
+    return str(tabulate(table, headers='firstrow', tablefmt="simple"))
+
+
+def _generate_bot_net_email_content(report_details):
+    """
+    Generates email body content for Bot Net block report.
+
+    :param report_details: Report details object
+    :return: string
+    """
+    rows = [v for r in report_details['results'] for v in r['value']]
+    table = [
+        ['Name', 'Threat ID', 'Time', 'Count']
+    ]
+    for row in rows:
+        # timestamp is in milliseconds
+        time_stamp = row['first-occurrence'] / 1000
+        table.append([
+            row['name'],
+            row['threat-id'],
+            datetime.fromtimestamp(time_stamp).strftime('%Y-%m-%d %H:%M:%S'),
             row['count'],
         ])
     return str(tabulate(table, headers='firstrow', tablefmt="simple"))
