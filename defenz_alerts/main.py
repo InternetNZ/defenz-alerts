@@ -216,8 +216,9 @@ NETWORK: {network_id} - {network_name}
 """
 
     if block_type in (MALWARE_PHISHING_BLOCKS, WEB_FILTER_BLOCKS):
-        blocks = _generate_malware_web_email_content(report_details) \
-            if report_details else "No data found!"
+        blocks = \
+            _generate_malware_phishing_or_web_filter_email_content(
+                report_details) if report_details else "No data found!"
     elif block_type == BOT_NET_BLOCKS:
         blocks = _generate_bot_net_email_content(report_details) \
             if report_details else "No data found!"
@@ -235,9 +236,9 @@ NETWORK: {network_id} - {network_name}
     return email_body
 
 
-def _generate_malware_web_email_content(report_details):
+def _generate_malware_phishing_or_web_filter_email_content(report_details):
     """
-    Generates email body content for Malware Phishing and Web Filter
+    Generates email body content for Malware Phishing or Web Filter
     block reports.
 
     :param report_details: Report details object
