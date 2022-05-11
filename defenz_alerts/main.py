@@ -18,7 +18,7 @@ from defenz_alerts.authentication import DefenzAuthentication
 # Mapping a standard readable block report type to actual summary and details
 # report type
 WEB_FILTER_BLOCKS = 'WEB_FILTER_BLOCKS'
-BOT_NET_BLOCKS = 'BOT_NET_BLOCK_DETAILS'
+BOT_NET_BLOCKS = 'BOT_NET_BLOCKS'
 MALWARE_PHISHING_BLOCKS = 'MALWARE_PHISHING_BLOCKS'
 REPORTS_MAPPING = {
     WEB_FILTER_BLOCKS: 'WEB_FILTER_BLOCK_DETAILS',
@@ -148,8 +148,7 @@ def get_all_reports(network_id, ran_at, interval=None):
     """
     LOGGER.info("Getting all the report for network id %s", network_id)
 
-    end_point = CONFIG['DEFENZ'][
-                    'API_URL'] + f'/reporting/alldata/{network_id}'
+    end_point = API_URL + f'/reporting/alldata/{network_id}'
 
     params = {}
 
@@ -250,7 +249,7 @@ def _generate_malware_phishing_or_web_filter_email_content(report_details):
     ]
     for row in rows:
         # timestamp is in milliseconds
-        time_stamp = row['timestamp'] / 1000
+        time_stamp = row['first-occurrence'] / 1000
         table.append([
             row['protocol'],
             row['url'],
@@ -504,7 +503,7 @@ def main():
                 reports = get_all_reports(net['id'], now, args.interval)
                 for report_type in args.report_types:
                     report_type = report_type.strip()
-                    if reports[report_type]['results']:
+                    if report_type in reports and reports[report_type]['results']:
                         send_alert(net, report_type, now,
                                    args.interval, args.report_email)
             except Exception as ex:  # pylint: disable=broad-except
