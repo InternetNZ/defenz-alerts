@@ -2,7 +2,9 @@
 """
 An entry point to run the script.
 """
+import sys
+
 from defenz_alerts import main
 
 main.main()
-exit(0)
+sys.exit(0)
